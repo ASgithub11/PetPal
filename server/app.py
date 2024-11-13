@@ -17,3 +17,19 @@ def create_user():
     }
     users.append(new_user)
     return jsonify(new_user), 201
+
+# helper function for user lookup by id
+def find_user(user_id):
+    return next((user for user in users if user["id"] == user_id), None)
+
+# get specific user
+
+
+# get all users
+
+
+# update user by id
+
+
+# delete user by id
+
