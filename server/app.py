@@ -35,6 +35,17 @@ def get_all_users():
     return jsonify(users)
 
 # update user by id
+@app.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    user = find_user(user_id)
+    if user == None:
+        abort(404, description="User not found")
+    if not request.json:
+        abort(400, description="Invalid request data")
+    
+    user["name"] = request.json.get("name", user["name"])
+    user["email"] = request.json.get("email", user["email"])
+    return jsonify(user)
 
 
 # delete user by id
