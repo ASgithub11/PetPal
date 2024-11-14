@@ -30,7 +30,9 @@ def get_user(user_id):
     return jsonify(user)
 
 # get all users
-
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    return jsonify(users)
 
 # update user by id
 
