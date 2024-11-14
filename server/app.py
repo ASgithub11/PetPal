@@ -23,12 +23,29 @@ def find_user(user_id):
     return next((user for user in users if user["id"] == user_id), None)
 
 # get specific user
-
+def get_user(user_id):
+    user = find_user(user_id)
+    if user == None:
+        abort(404, description="User not found")
+    return jsonify(user)
 
 # get all users
-
+@app.route('/users', methods=['GET'])
+def get_all_users():
+    return jsonify(users)
 
 # update user by id
+@app.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    user = find_user(user_id)
+    if user == None:
+        abort(404, description="User not found")
+    if not request.json:
+        abort(400, description="Invalid request data")
+    
+    user["name"] = request.json.get("name", user["name"])
+    user["email"] = request.json.get("email", user["email"])
+    return jsonify(user)
 
 
 # delete user by id
