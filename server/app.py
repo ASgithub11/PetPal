@@ -57,5 +57,6 @@ def delete_user(user_id):
     users.remove(user)
     return jsonify(user)
 
+# run the app
 if __name__ == '__main__':
     app.run(debug=True)
