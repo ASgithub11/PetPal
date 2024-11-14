@@ -49,4 +49,11 @@ def update_user(user_id):
 
 
 # delete user by id
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    user = find_user(user_id)
+    if user == None:
+        abort(404, description="User not found")
+    users.remove(user)
+    return jsonify(user)
 
