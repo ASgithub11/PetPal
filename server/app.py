@@ -23,7 +23,11 @@ def find_user(user_id):
     return next((user for user in users if user["id"] == user_id), None)
 
 # get specific user
-
+def get_user(user_id):
+    user = find_user(user_id)
+    if user == None:
+        abort(404, description="User not found")
+    return jsonify(user)
 
 # get all users
 
