@@ -45,4 +45,28 @@ const retrieveUser = async (id: number): Promise<UserData> => {
   }
 };
 
-export { retrieveUsers, retrieveUser };
+// Create a new user
+const createUser = async (userData: UserData): Promise<UserData> => {
+  try {
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`,
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error('invalid user API response, check network tab!');
+    }
+
+    return data;
+  } catch (err) {
+    console.log('Error from user creation:', err);
+    return Promise.reject('Could not create user');
+  }
+};
+
+export { retrieveUsers, retrieveUser, createUser };
