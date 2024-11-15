@@ -34,4 +34,52 @@ const Signup = () => {
       console.error('Failed to sign up', err);
     }
   };
+
+  return (
+    <div className='form-container'>
+      <form className='form signup-form' onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
+        <div className='form-group'>
+          <label>Username</label>
+          <input
+            className='form-input'
+            type='text'
+            name='username'
+            value={signupData.username || ''}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label>Email</label>
+          <input
+            className='form-input'
+            type='email'
+            name='email'
+            value={signupData.email || ''}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label>Password</label>
+          <input
+            className='form-input'
+            type='password'
+            name='password'
+            value={signupData.password || ''}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <button className='btn btn-primary' type='submit'>
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
+
+export default Signup;
