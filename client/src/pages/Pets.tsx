@@ -20,4 +20,25 @@ const Pets = () => {
         };
         loadPets();
     }, []);
+
+    // Toggle favorite status
+    const handleFavorite = async (petId: string) => {
+        try {
+            if (favorites.includes(petId)) {
+                await removeFavorite(petId);
+                setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== petId));
+                localStorage.setItem(
+                    'favorites',
+                    JSON.stringify(favorites.filter((id) => id !== petId))
+                    );
+                } else {
+                    await addFavorite(petId);
+                    setFavorites((prevFavorites) => [...prevFavorites, petId]);
+                    localStorage.setItem('favorites', JSON.stringify([...favorites, petId]));
+                }
+            } catch (error) {
+                console.error('Failed to update favorites:', error);
+        }
+    };
+
     
