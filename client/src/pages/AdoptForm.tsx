@@ -47,4 +47,14 @@ const AdoptForm = () => {
       setError('Failed to submit the form. Please try again.');
     }
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="form-container">
+        <h1>Thank You!</h1>
+        <p>Your adoption application for Pet ID: {petId} has been submitted successfully.</p>
+      </div>
+    );
+  }
+
   
