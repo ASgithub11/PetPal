@@ -57,4 +57,56 @@ const AdoptForm = () => {
     );
   }
 
-  
+  return (
+    <div className="form-container">
+      <form className="form adopt-form" onSubmit={handleSubmit}>
+        <h1>Adopt a Pet</h1>
+        {error && <p className="error-message">{error}</p>}
+        <div className="form-group">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Message</label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows={4}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit Application
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default AdoptForm;
