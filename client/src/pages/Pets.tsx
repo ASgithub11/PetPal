@@ -41,4 +41,31 @@ const Pets = () => {
         }
     };
 
-    
+    return (
+        <div className="pets-container">
+            <h1>Available Pets</h1>
+            {pets.length === 0 ? (
+                <p>No pets available at the moment. Please check back later!</p>
+                ):(
+                    <div className="pets-grid">
+                        {pets.map((pet) => (
+                            <div className="pet-card" key={pet.id}>
+                                <img src={pet.imageUrl} alt={pet.name} className="pet-image" />
+                                <div className="pet-details">
+                                    <h2>{pet.name}</h2>
+                                    <p>Age: {pet.age}</p>
+                                    <p>Breed: {pet.breed}</p>
+                                </div>
+                                <button className={`favorite-btn ${favorites.includes(pet.id) ? 'favorited' : ''}`} onClick={() => handleFavorite(pet.id)}>
+                                    {favorites.includes(pet.id) ? '❤️' : '🤍'}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    )
+};
+
+export default Pets;
