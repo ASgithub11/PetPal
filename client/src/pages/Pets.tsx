@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchPets } from '../api/petAPI'; // API function to fetch pets
+import { addFavorite, removeFavorite } from '../api/favoritesAPI'; // API functions to handle favorites
 import type { PetData } from '../interfaces/PetData'; // Pet interface
 
 const Pets = () => {
