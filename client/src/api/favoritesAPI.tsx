@@ -36,6 +36,23 @@ const addFavorite = async (petId: string): Promise<void> => {
   } catch (err) {
     console.error('Error adding favorite:', err);
   }
-}
+};
 
-export { getFavorites, addFavorite };
+// To remove a favorite
+const removeFavorite = async (petId: string) => {
+  try {
+    const response = await fetch(`/api/favorites/${petId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${Auth.getToken()}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error('Failed to remove favorite');
+    }
+  } catch (err) {
+    console.error('Error removing favorite:', err);
+  }
+};
+
+export { getFavorites, addFavorite, removeFavorite };
