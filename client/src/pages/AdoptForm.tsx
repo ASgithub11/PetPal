@@ -26,4 +26,25 @@ const AdoptForm = () => {
     e.preventDefault();
     setError(null);
 
-    
+    try {
+      const response = await fetch('/api/adopt', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, petId }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => navigate('/'), 3000); // Redirect after 3 seconds
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Something went wrong');
+      }
+    } catch (err) {
+      console.error('Error submitting adoption form:', err);
+      setError('Failed to submit the form. Please try again.');
+    }
+  };
+  
