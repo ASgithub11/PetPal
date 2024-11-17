@@ -19,4 +19,23 @@ const getFavorites = async () => {
   }
 };
 
-export { getFavorites };
+// To add a favorite
+const addFavorite = async (petId: string): Promise<void> => {
+  try {
+    const response = await fetch('/api/favorites', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.getToken()}`,
+      },
+      body: JSON.stringify({ petId }),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to add favorite');
+    }
+  } catch (err) {
+    console.error('Error adding favorite:', err);
+  }
+}
+
+export { getFavorites, addFavorite };
