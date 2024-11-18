@@ -6,6 +6,9 @@ const Home = () => {
       <header className="home-header">
         <h1>Welcome to PetPal</h1>
         <p>Your trusted platform for pet adoption</p>
+        <Link to="/pets" className="btn btn-primary">
+          Browse Pets
+        </Link>
       </header>
 
       <section className="home-features">
