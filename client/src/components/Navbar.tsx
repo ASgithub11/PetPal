@@ -11,6 +11,13 @@ const Navbar = () => {
       <Link to="/about">About</Link>
       <Link to="/pets">Pets</Link>
       <Link to="/adoption">Adoption</Link>
+      {isLoggedIn && <Link to="/favorites">Favorites</Link>}
+      {isLoggedIn ? (
+        <button onClick={() => Auth.logout()}>Logout</button>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+      <Link to="/signup">Signup</Link>
     </ul>
     </nav>
   );
