@@ -1,0 +1,30 @@
+body {
+    background-image: url('..//assets/images/image2.jpg');
+    background-size: cover;
+}
+
+.about-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1.6;
+}
+  
+.about-container h1, .about-container h2 {
+    color: #2c3e50;
+}
+
+.about-container p {
+    font-size: 14px;
+}
+  
+.about-container a {
+    color: #4418e0;
+    text-decoration: none;
+}
+  
+.about-container a:hover {
+    text-decoration: underline;
+}
+  
