@@ -32,7 +32,7 @@ const Favorites = () => {
   }, []);
 
   // Handle unfavorite logic
-  const unfavorite = async (petId: number) => {
+  const unfavorite = async (petId: string) => {
     try {
       const response = await fetch(`/api/favorites/${petId}`, {
         method: 'DELETE',
@@ -47,7 +47,7 @@ const Favorites = () => {
 
       // Update the favorites list by removing the unfavorited pet
       setFavorites((prevFavorites: PetData[]) =>
-        prevFavorites.filter((pet: PetData) => pet.id !== petId)
+        prevFavorites.filter((pet: PetData) => pet.id !== petId.toString())
       );
     } catch (err) {
       console.error('Error unfavoriting pet:', err);
