@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './AdoptForm.css';
 
 const AdoptForm = () => {
   const { petId } = useParams<{ petId: string }>(); // Get the pet ID from the URL
