@@ -1,0 +1,145 @@
+.home-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  /* Hero Section */
+  .home-header {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #6fefe4, #a4c8f2);
+    background-image: url('../assets/images/image1.png');
+    background-size: cover;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    height: 350px;
+  }
+  
+  .home-header h1 {
+    margin-top: 30px;
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  .home-header p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+  }
+  
+  .home-header .btn {
+    padding: 14px 30px;
+    background-color: #ff7c6d;
+    color: white;
+    font-size: 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(255, 124, 109, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .home-header .btn:hover {
+    background-color: #ff5a4e;
+    transform: scale(1.05);
+  }
+  
+  /* Features Section */
+  .home-features {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .home-features h2 {
+    font-size: 25px;
+    color: #1e3d58;
+    margin-bottom: 40px;
+  }
+  
+  .feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .feature-card {
+    background-color: #ffffff;
+    padding: 25px;
+    width: 280px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-card h3 {
+    font-size: 24px;
+    color: #ff7c6d;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Testimonials Section */
+  .home-testimonials {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #c0bf94;
+  }
+  
+  .home-testimonials h2 {
+    font-size: 25px;
+    color: #1e3d58;
+    margin-bottom: 40px;
+  }
+  
+  .home-testimonials blockquote {
+    font-size: 12px;
+    font-style: italic;
+    color: #4a6d88;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-left: 4px solid #ff7c6d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-testimonials blockquote footer {
+    font-size: 12px;
+    font-weight: bold;
+    color: #1e3d58;
+    margin-top: 10px;
+  }
+  
+  /* Footer Section */
+  .home-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    padding: 20px;
+    background-color: #fafafa;
+    border-top: 1px solid #ddd;
+  }
+  
+  .home-footer p {
+    margin: 0;
+    color: #4a6d88;
+  }
+  
