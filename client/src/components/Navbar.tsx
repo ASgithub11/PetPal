@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import PetPalLogo from '../assets/images/PetPalLogo.png';
+import './Navbar.css';
 
 const Navbar = () => {
   const isLoggedIn = Auth.loggedIn();
