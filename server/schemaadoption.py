@@ -5,14 +5,14 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 # MongoDB URI
-app.config["MONGO_URI"] = "mongodb://localhost:27017/pet_adoption"
+app.config["MONGO_URI"] = "mongodb://localhost:27017"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
 
 # Define the Adoption Request Routes
 
-@app.route('/adoption_requests', methods=['POST'])
+@app.route('/api/adoption_requests', methods=['POST'])
 def create_adoption_request():
     data = request.get_json()
 
@@ -37,7 +37,7 @@ def create_adoption_request():
 
     return jsonify({"message": "Adoption request created", "adoption_request_id": str(result.inserted_id)}), 201
 
-@app.route('/adoption_requests', methods=['GET'])
+@app.route('/api/adoption_requests', methods=['GET'])
 def get_adoption_requests():
     adoption_requests_collection = mongo.db.adoption_requests
     requests = adoption_requests_collection.find()
@@ -49,7 +49,7 @@ def get_adoption_requests():
 
     return jsonify(adoption_request_list)
 
-@app.route('/adoption_requests/<adoption_request_id>', methods=['GET'])
+@app.route('/api/adoption_requests/<adoption_request_id>', methods=['GET'])
 def get_adoption_request(adoption_request_id):
     adoption_request = mongo.db.adoption_requests.find_one({"_id": ObjectId(adoption_request_id)})
     if adoption_request:
@@ -57,7 +57,7 @@ def get_adoption_request(adoption_request_id):
         return jsonify(adoption_request)
     return jsonify({"error": "Adoption request not found"}), 404
 
-@app.route('/adoption_requests/<adoption_request_id>', methods=['PUT'])
+@app.route('/api/adoption_requests/<adoption_request_id>', methods=['PUT'])
 def update_adoption_request(adoption_request_id):
     data = request.get_json()
     status = data.get("status", None)

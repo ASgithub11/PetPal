@@ -4,12 +4,12 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 
 # MongoDB URI
-app.config["MONGO_URI"] = "mongodb://localhost:27017/pet_adoption"
+app.config["MONGO_URI"] = "mongodb://localhost:27017"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
 
-@app.route('/pets', methods=['GET'])
+@app.route('/api/pets', methods=['GET'])
 def get_pets():
     pets_collection = mongo.db.pets  # Access the 'pets' collection
     pets = pets_collection.find()    # Retrieve all documents from the 'pets' collection
@@ -19,14 +19,14 @@ def get_pets():
         pet_list.append(pet)
     return jsonify(pet_list)
 
-@app.route('/pets', methods=['POST'])
+@app.route('/api/pets', methods=['POST'])
 def add_pet():
     pet_data = request.get_json()
     pets_collection = mongo.db.pets  # Access the 'pets' collection
     result = pets_collection.insert_one(pet_data)  # Insert the new pet document
     return jsonify({"message": "Pet added successfully!", "pet_id": str(result.inserted_id)}), 201
 
-@app.route('/pets/<pet_id>', methods=['GET'])
+@app.route('/api/pets/<pet_id>', methods=['GET'])
 def get_pet(pet_id):
     pets_collection = mongo.db.pets
     pet = pets_collection.find_one({"_id": pet_id})
