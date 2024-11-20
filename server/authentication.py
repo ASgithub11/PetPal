@@ -2,7 +2,7 @@ import jwt
 from datetime import datetime, timedelta
 
 # secret key for encoding and decoding JWT
-SECRET_KEY = "my_secret_key"
+SECRET_KEY = "your_secret_key"
 
 # function to generate jwt token lasting 1 hour
 def generate_token(user_id):
