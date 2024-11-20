@@ -4,60 +4,74 @@ import { addFavorite, removeFavorite } from '../api/favoritesAPI'; // API functi
 import type { PetData } from '../interfaces/PetData'; // Pet interface
 
 const Pets = () => {
+    // Initialize state to store the list of pets and the IDs of user's favorite pets
     const [pets, setPets] = useState<PetData[]>([]);
-    const [favorites, setFavorites] = useState<string[]>([]); // Array of pet IDs
-
-    // Fetch pets on component mount
+    const [favorites, setFavorites] = useState<string[]>([]);
+    
+    // Fetch the list of pets and any saved favorites when component mounts
     useEffect(() => {
         const loadPets = async () => {
             try {
+                // Fetch the list of pets
                 const data = await fetchPets();
-                setPets(data);
+                setPets(data);  // Update the state with the list of fetched pets
+
+                // Load the user's favorite pets from local storage
                 const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
                 setFavorites(storedFavorites);
             } catch (error) {
-                console.error('Failed to fetch pets:', error);
+                console.error('Failed to fetch pets:', error);  // Log the error to the console
             }
         };
-        loadPets();
-    }, []);
 
-    // Toggle favorite status
+        loadPets(); // Call the loadPets function to fetch pets
+    }, []); // Empty dependency array ensures the effect runs only once on mount
+    
+    // Handle adding or removing a pet from favorites
     const handleFavorite = async (petId: string) => {
         try {
             if (favorites.includes(petId)) {
-                await removeFavorite(petId);
-                setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== petId));
+                // If the pet is already favorited, remove it from favorites
+                await removeFavorite(petId);    // Call the removeFavorite API function to remove the pet
+                setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== petId)); // Update the favorites state
                 localStorage.setItem(
                     'favorites',
                     JSON.stringify(favorites.filter((id) => id !== petId))
                     );
                 } else {
-                    await addFavorite(petId);
-                    setFavorites((prevFavorites) => [...prevFavorites, petId]);
-                    localStorage.setItem('favorites', JSON.stringify([...favorites, petId]));
+                    // If the pet is not favorited, add it to favorites
+                    await addFavorite(petId);   // Call the addFavorite API function to add the pet
+                    setFavorites((prevFavorites) => [...prevFavorites, petId]); // Update the favorites state
+                    localStorage.setItem('favorites', JSON.stringify([...favorites, petId]));   // Update the local storage
                 }
             } catch (error) {
-                console.error('Failed to update favorites:', error);
+                console.error('Failed to update favorites:', error);    // Log the error to the console
         }
     };
 
+    // Render the list of pets with favorite buttons
     return (
         <div className="pets-container">
             <h1>Available Pets</h1>
             {pets.length === 0 ? (
+                // Display a message if no pets are available
                 <p>No pets available at the moment. Please check back later!</p>
                 ):(
+                    // Display a grid of pet cards if pets are available
                     <div className="pets-grid">
                         {pets.map((pet) => (
                             <div className="pet-card" key={pet.id}>
+                                {/* Display the pet's image */}
                                 <img src={pet.imageUrl} alt={pet.name} className="pet-image" />
+                                {/* Display the pet's details */}
                                 <div className="pet-details">
                                     <h2>{pet.name}</h2>
                                     <p>Age: {pet.age}</p>
                                     <p>Breed: {pet.breed}</p>
                                 </div>
+                                {/* Button to toggle the favorite status */}
                                 <button className={`favorite-btn ${favorites.includes(pet.id) ? 'favorited' : ''}`} onClick={() => handleFavorite(pet.id)}>
+                                    {/* Show a heart icon depending on the favorite status */}
                                     {favorites.includes(pet.id) ? '❤️' : '🤍'}
                                 </button>
                             </div>
