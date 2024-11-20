@@ -6,7 +6,7 @@ from hashlib import sha256  # Password hashing
 app = Flask(__name__)
 
 # MongoDB URI
-app.config["MONGO_URI"] = "mongodb://localhost:27017/user_management"
+app.config["MONGO_URI"] = "mongodb://localhost:27017"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
@@ -20,7 +20,7 @@ def hash_password(password):
     return sha256(password.encode('utf-8')).hexdigest()
 
 # Route to add a new user
-@app.route('/users', methods=['POST'])
+@app.route('api/users', methods=['POST'])
 def add_user():
     user_data = request.get_json()
     
@@ -39,7 +39,7 @@ def add_user():
         return jsonify({"error": str(e)}), 400
 
 # Route to retrieve all users
-@app.route('/users', methods=['GET'])
+@app.route('/api/users', methods=['GET'])
 def get_users():
     users_collection = mongo.db.users  # Access the 'users' collection
     users = users_collection.find()    # Retrieve all documents from the 'users' collection
@@ -50,7 +50,7 @@ def get_users():
     return jsonify(user_list)
 
 # Route to retrieve a user by username
-@app.route('/users/<username>', methods=['GET'])
+@app.route('/api/users/<username>', methods=['GET'])
 def get_user(username):
     users_collection = mongo.db.users
     user = users_collection.find_one({"username": username})
@@ -60,7 +60,7 @@ def get_user(username):
     return jsonify({"error": "User not found"}), 404
 
 # Route to verify user login (check username and password)
-@app.route('/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def verify_login():
     login_data = request.get_json()
     

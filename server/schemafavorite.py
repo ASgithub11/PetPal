@@ -5,13 +5,13 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 # MongoDB URI
-app.config["MONGO_URI"] = "mongodb://localhost:27017/pet_adoption"
+app.config["MONGO_URI"] = "mongodb://localhost:27017"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
 
 # Define the route to add a favorite pet
-@app.route('/favorite_pets', methods=['POST'])
+@app.route('/api/favorite_pets', methods=['POST'])
 def add_favorite_pet():
     data = request.get_json()
 
@@ -31,7 +31,7 @@ def add_favorite_pet():
     return jsonify({"message": "Favorite pet added successfully!", "favorite_pet_id": str(result.inserted_id)}), 201
 
 # Define the route to get all favorite pets for a specific user
-@app.route('/favorite_pets/user/<int:user_id>', methods=['GET'])
+@app.route('/api/favorite_pets/user/<int:user_id>', methods=['GET'])
 def get_user_favorite_pets(user_id):
     # Query the database for all favorite pets of the user
     favorite_pets = mongo.db.favorite_pets.find({"user_id": user_id})
@@ -45,7 +45,7 @@ def get_user_favorite_pets(user_id):
     return jsonify(favorite_pet_list)
 
 # Define the route to remove a favorite pet
-@app.route('/favorite_pets/<favorite_pet_id>', methods=['DELETE'])
+@app.route('/api/favorite_pets/<favorite_pet_id>', methods=['DELETE'])
 def remove_favorite_pet(favorite_pet_id):
     # Delete the favorite pet by its ID
     result = mongo.db.favorite_pets.delete_one({"_id": ObjectId(favorite_pet_id)})

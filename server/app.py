@@ -1,15 +1,13 @@
 from flask import Flask, request, jsonify, abort
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
-
 # In-memory storage for users
 users = []
 
 # create new user
-@app.route('/users', methods=['POST'])
+@app.route('/api/users', methods=['POST'])
 def create_user():
+    print("Request data: ", request.json)
     if not request.json or 'name' not in request.json or 'email' not in request.json:
         abort(400, description="Invalid request data")
     new_user = {
@@ -32,12 +30,12 @@ def get_user(user_id):
     return jsonify(user)
 
 # get all users
-@app.route('/users', methods=['GET'])
+@app.route('/api/users', methods=['GET'])
 def get_all_users():
     return jsonify(users)
 
 # update user by id
-@app.route('/users/<int:user_id>', methods=['PUT'])
+@app.route('/api/users/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
     user = find_user(user_id)
     if user == None:
@@ -51,7 +49,7 @@ def update_user(user_id):
 
 
 # delete user by id
-@app.route('/users/<int:user_id>', methods=['DELETE'])
+@app.route('/api/users/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     user = find_user(user_id)
     if user == None:
