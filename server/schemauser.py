@@ -1,21 +1,21 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
-from hashlib import sha256  # Password hashing (Use bcrypt or similar in production)
+from hashlib import sha256  # Password hashing
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# MongoDB URI (replace with your MongoDB URI or leave it for local MongoDB)
+# MongoDB URI
 app.config["MONGO_URI"] = "mongodb://localhost:27017/user_management"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
 
-# Create indexes for username and email to enforce uniqueness
+# Create indexes for username and email
 mongo.db.users.create_index("username", unique=True)
 mongo.db.users.create_index("email", unique=True)
 
-# Function to hash a password (hashing for demo purposes)
+# Function to hash a password
 def hash_password(password):
     return sha256(password.encode('utf-8')).hexdigest()
 

@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-# MongoDB URI (replace with your MongoDB URI or leave it for local MongoDB)
+# MongoDB URI
 app.config["MONGO_URI"] = "mongodb://localhost:27017/pet_adoption"
 
 # Initialize PyMongo
