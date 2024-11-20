@@ -16,3 +16,8 @@ def validate_password(password):
     if not re.search(r'[0-9]', password):
         return False
     return True
+
+# username validation
+def validate_username(username):
+    pattern = r'^[a-zA-Z0-9_]{3,15}$'
+    return re.match(pattern, username) is not None
