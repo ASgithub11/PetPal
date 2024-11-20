@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, abort
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # In-memory storage for users
 users = []
