@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 import jwt
 import bcrypt
 from datetime import datetime, timedelta, timezone
+import re
 
 app = Flask(__name__)
 # In-memory storage for users

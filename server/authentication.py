@@ -1,3 +1,5 @@
+# this code has been rewritten in app.py
+
 import jwt
 from datetime import datetime, timedelta
 
