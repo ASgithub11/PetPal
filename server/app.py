@@ -4,7 +4,7 @@ app = Flask(__name__)
 # In-memory storage for users
 users = []
 
-# create new user
+# create new user.
 @app.route('/api/users', methods=['POST'])
 def create_user():
     print("Request data: ", request.json)
