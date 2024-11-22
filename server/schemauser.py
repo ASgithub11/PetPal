@@ -1,3 +1,5 @@
+# most of this code has been moved to app.py
+
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from hashlib import sha256  # Password hashing
