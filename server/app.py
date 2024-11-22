@@ -104,7 +104,10 @@ def get_user(user_id):
 # get all users
 @app.route('/api/users', methods=['GET'])
 def get_all_users():
-    return jsonify(users)
+    users = list(users_collection.find())
+    for user in users:
+        user["_id"] = str(user["_id"])
+    return jsonify(users), 200
 
 # update user by id
 @app.route('/api/users/<int:user_id>', methods=['PUT'])
