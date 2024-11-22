@@ -3,7 +3,7 @@ import type { UserLogin } from '../interfaces/UserLogin';
 const login = async (userInfo: UserLogin) => {
   try {
     // Send a POST request to the '/auth/login' endpoint with the user's login information.
-    const response = await fetch('/auth/login', {
+    const response = await fetch('/api/login', {
       method: 'POST', // Send a POST request. This means we are sending data to the server
       headers: {
         'Content-Type': 'application/json',   // Tell the server we are sending data in JSON format
