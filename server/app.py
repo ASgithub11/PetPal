@@ -1,18 +1,21 @@
 from flask import Flask, request, jsonify, abort
+from flask_cors import CORS
 
 app = Flask(__name__)
 # In-memory storage for users
 users = []
 
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
 # create new user
 @app.route('/api/users', methods=['POST'])
 def create_user():
     print("Request data: ", request.json)
-    if not request.json or 'name' not in request.json or 'email' not in request.json:
+    if not request.json or 'username' not in request.json or 'email' not in request.json:
         abort(400, description="Invalid request data")
     new_user = {
         "id": users[-1]["id"] + 1 if users else 1,
-        "name": request.json["name"],
+        "username": request.json["username"],
         "email": request.json["email"]
     }
     users.append(new_user)
