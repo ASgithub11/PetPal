@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timedelta
-from authentication import generate_token, verify_token
+from server.authentication import generate_token, verify_token
 import jwt
 
 # test cases generated_token, verify_token, expired_token, and invalid_token from authentication.py
