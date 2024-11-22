@@ -2,4 +2,6 @@ flask
 flask-cors
 flask-sqlalchemy
 flask-pymongo
+pyjwt
 jwt
+bcrypt
