@@ -80,6 +80,16 @@ def login_user():
     
     return jsonify({"message": "Login successful", "token": token}), 200
 
+# function to verify a jwt token
+def verify_token(token):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return payload["user_id"]
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
+
 # helper function for user lookup by id
 def find_user(user_id):
     return next((user for user in users if user["id"] == user_id), None)
@@ -94,7 +104,10 @@ def get_user(user_id):
 # get all users
 @app.route('/api/users', methods=['GET'])
 def get_all_users():
-    return jsonify(users)
+    users = list(users_collection.find())
+    for user in users:
+        user["_id"] = str(user["_id"])
+    return jsonify(users), 200
 
 # update user by id
 @app.route('/api/users/<int:user_id>', methods=['PUT'])
