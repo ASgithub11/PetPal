@@ -1,8 +1,14 @@
 import unittest
 from datetime import datetime, timedelta
 from server.authentication import generate_token, verify_token
-import jwt
+# import jwt
 
+
+from jwt import (
+    JWT
+)
+
+instance = JWT()
 # test cases generated_token, verify_token, expired_token, and invalid_token from authentication.py
 
 class TestAuthentication(unittest.TestCase):
@@ -13,7 +19,7 @@ class TestAuthentication(unittest.TestCase):
         self.token = generate_token(self.user_id)
 
     def test_generate_token(self):
-        payload = jwt.decode(self.token, self.secret_key, algorithms=["HS256"])
+        payload = instance.decode(self.token, self.secret_key, algorithms=["HS256"])
         self.assertEqual(payload["user_id"], self.user_id)
         self.assertTrue("exp" in payload)
 
@@ -22,7 +28,7 @@ class TestAuthentication(unittest.TestCase):
         self.assertEqual(user_id, self.user_id)
 
     def test_expired_token(self):
-        expired_token = jwt.encode({
+        expired_token = instance.encode({
             "user_id": self.user_id,
             "exp": datetime.utcnow() - timedelta(hours=1)
         }, self.secret_key, algorithm="HS256")
