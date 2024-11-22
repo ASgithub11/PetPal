@@ -1,16 +1,13 @@
 from flask import Flask, request, jsonify, abort
-from flask_cors import CORS
 from flask_pymongo import PyMongo
 import jwt
 import bcrypt
 from datetime import datetime, timedelta, timezone
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
 # In-memory storage for users
 users = []
-
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 # MongoDB URI
 app.config["MONGO_URI"] = "mongodb://localhost:27017/userDB"
