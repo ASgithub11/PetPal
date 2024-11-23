@@ -1,7 +1,7 @@
 # this code has been rewritten in app.py
 
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # secret key for encoding and decoding JWT
 SECRET_KEY = "your_secret_key"
@@ -10,7 +10,7 @@ SECRET_KEY = "your_secret_key"
 def generate_token(user_id):
     payload = {
         "user_id": user_id,
-        "exp": datetime.utcnow() + timedelta(hours=1)
+        "exp": datetime.now(timezone.utc) + timedelta(hours=1)
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
     return token

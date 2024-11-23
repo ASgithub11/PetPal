@@ -3,7 +3,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import unittest
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from server.authentication import generate_token, verify_token
 import jwt
 
@@ -30,7 +30,7 @@ class TestAuthentication(unittest.TestCase):
     def test_expired_token(self):
         expired_token = jwt.encode({
             "user_id": self.user_id,
-            "exp": datetime.utcnow() - timedelta(hours=1)
+            "exp": datetime.now(timezone.utc) - timedelta(hours=1)
         }, self.secret_key, algorithm="HS256")
         print(f"Test Expired Token: Expired Token: {expired_token}")
         user_id = verify_token(expired_token)
