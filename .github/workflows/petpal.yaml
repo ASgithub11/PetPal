@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest, ubuntu-latest, macos-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Repository
@@ -29,4 +29,3 @@ jobs:
     - name: Run tests
       run: |
         python -m unittest discover -s tests -p "test_authentication.py"
-
