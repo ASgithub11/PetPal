@@ -1,3 +1,5 @@
+# this had been added to the main app.py file
+
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -11,7 +13,7 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017"
 mongo = PyMongo(app)
 
 # Define the route to add a favorite pet
-@app.route('/api/favorite_pets', methods=['POST'])
+@app.route('/api/favorites', methods=['POST'])
 def add_favorite_pet():
     data = request.get_json()
 
