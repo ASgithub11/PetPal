@@ -136,6 +136,7 @@ def delete_user(user_id):
 # Define the 'pets' collection 
 pets_collection = mongo.db.pets
 
+# Define the route to get all pets
 @app.route('/api/pets', methods=['GET'])
 def get_pets():
     pets_collection = mongo.db.pets  # Access the 'pets' collection
@@ -146,6 +147,7 @@ def get_pets():
         pet_list.append(pet)
     return jsonify(pet_list)
 
+# Define the route to add a pet
 @app.route('/api/pets', methods=['POST'])
 def add_pet():
     pet_data = request.get_json()
@@ -153,6 +155,7 @@ def add_pet():
     result = pets_collection.insert_one(pet_data)  # Insert the new pet document
     return jsonify({"message": "Pet added successfully!", "pet_id": str(result.inserted_id)}), 201
 
+# Define the route to get a specific pet
 @app.route('/api/pets/<pet_id>', methods=['GET'])
 def get_pet(pet_id):
     pets_collection = mongo.db.pets
