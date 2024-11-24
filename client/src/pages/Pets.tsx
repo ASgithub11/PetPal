@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 import { fetchPets } from '../api/petAPI'; // API function to fetch pets
 import { addFavorite, removeFavorite } from '../api/favoritesAPI'; // API functions to handle favorites
 import type { PetData } from '../interfaces/PetData'; // Pet interface
+import Auth from '../utils/auth';
 
 const Pets = () => {
     // Initialize state to store the list of pets and the IDs of user's favorite pets
     const [pets, setPets] = useState<PetData[]>([]);
     const [favorites, setFavorites] = useState<string[]>([]);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     
     // Fetch the list of pets and any saved favorites when component mounts
     useEffect(() => {
         const loadPets = async () => {
             try {
+                if (isLoggedIn) {
                 // Fetch the list of pets
                 const data = await fetchPets();
                 setPets(data);  // Update the state with the list of fetched pets
@@ -19,11 +22,12 @@ const Pets = () => {
                 // Load the user's favorite pets from local storage
                 const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
                 setFavorites(storedFavorites);
+                }
             } catch (error) {
                 console.error('Failed to fetch pets:', error);  // Log the error to the console
             }
         };
-
+        setIsLoggedIn(Auth.loggedIn());
         loadPets(); // Call the loadPets function to fetch pets
     }, []); // Empty dependency array ensures the effect runs only once on mount
     
@@ -53,7 +57,7 @@ const Pets = () => {
     return (
         <div className="pets-container">
             <h1>Available Pets</h1>
-            {pets.length === 0 ? (
+            {isLoggedIn ? (pets.length === 0 ? (
                 // Display a message if no pets are available
                 <p>No pets available at the moment. Please check back later!</p>
                 ):(
@@ -78,7 +82,9 @@ const Pets = () => {
                         ))}
                     </div>
                 )
-            }
+            ) : (
+                <p>Please login to see available pets.</p>
+            )}
         </div>
     )
 };
