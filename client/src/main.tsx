@@ -9,6 +9,7 @@ import Adoption from './pages/AdoptForm';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ErrorPage from './pages/Error';
+import Favorites from './pages/Favorites';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,9 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
+      }, {
+        path: '/favorites',
+        element: <Favorites />
       }
     ]
   },
