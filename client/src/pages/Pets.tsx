@@ -20,7 +20,7 @@ const Pets = () => {
                 // Fetch the list of pets
                 const data = await fetchPets();
                 setPets(data);  // Update the state with the list of fetched pets
-
+                console.log(data);
                 // Load the user's favorite pets from local storage
                 const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
                 setFavorites(storedFavorites);
@@ -80,7 +80,7 @@ const Pets = () => {
                                 exit={{ opacity: 0 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <img src={pet.imageUrl} alt={pet.name} className="pet-image" />
+                                <img src={pet.image_url} alt={pet.name} className="pet-image" />
                                 {/* Display the pet's details */}
                                 <div className="pet-details">
                                     <h2>{pet.name}</h2>
