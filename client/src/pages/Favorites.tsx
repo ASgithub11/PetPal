@@ -54,7 +54,7 @@ const Favorites = () => {
 
       // Update the favorites list by removing the unfavorited pet
       setFavorites((prevFavorites: PetData[]) =>
-        prevFavorites.filter((pet: PetData) => pet.id !== petId.toString())
+        prevFavorites.filter((pet: PetData) => pet._id !== petId.toString())
       );
     } catch (err) {
       console.error('Error unfavoriting pet:', err); // Log the error to the console
@@ -72,7 +72,7 @@ const Favorites = () => {
         <div className="favorites-grid">
           {/* Display each favortie pet */}
           {favorites.map((pet) => (
-            <div key={pet.id} className="favorite-item">
+            <div key={pet._id} className="favorite-item">
               <img src={pet.imageUrl} alt={pet.name} /> {/* Display the pet's image */}
               <h2>{pet.name}</h2>
               <p>{pet.age} years old</p>
@@ -81,7 +81,7 @@ const Favorites = () => {
               {/* Button to remove the pet from favorites */}
               <button
                 className="btn btn-danger"
-                onClick={() => unfavorite(pet.id)}
+                onClick={() => unfavorite(pet._id)}
               >
                 Remove
               </button>

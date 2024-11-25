@@ -29,7 +29,7 @@ const Pets = () => {
         };
         setIsLoggedIn(Auth.loggedIn());
         loadPets(); // Call the loadPets function to fetch pets
-    }, []); // Empty dependency array ensures the effect runs only once on mount
+    }, [isLoggedIn]); // Add 'isLoggedIn' to the dependency array
     
     // Handle adding or removing a pet from favorites
     const handleFavorite = async (petId: string) => {
