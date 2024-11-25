@@ -5,7 +5,6 @@ import bcrypt
 from datetime import datetime, timedelta, timezone
 import re
 from bson import ObjectId
-from flask_cors import CORS
 
 app = Flask(__name__, static_folder='server/static')
 # In-memory storage for users
@@ -16,8 +15,6 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/userDB"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
-
-CORS(app)
 
 # Secret key for JWT (store securely in production)
 SECRET_KEY = "your_secret_key"
@@ -244,37 +241,40 @@ def remove_favorite_pet(favorite_pet_id):
     
 # this section is for the adoption requests
 
-# Define the 'adoption_requests' collection
-adoption_requests_collection = mongo.db.adoption_requests
-
-# Define the route to create an adoption request
-@app.route('/api/adoption_requests', methods=['POST'])
+@app.route('/api/adopt', methods=['POST'])
 def create_adoption_request():
-    data = request.get_json()
+    try:
+        data = request.get_json()  # Get JSON data from the request
+        name = data.get('name')
+        email = data.get('email')
+        phone = data.get('phone')
+        message = data.get('message')
 
-    # Check if required fields are provided
-    if 'user_id' not in data or 'pet_id' not in data:
-        return jsonify({"error": "Missing required fields: user_id and pet_id"}), 400
+        # Basic validation
+        if not name or not email or not message:
+            return jsonify({"error": "Please fill in all required fields"}), 400
 
-    # Default status is 'pending'
-    status = data.get('status', 'pending')
-    message = data.get('message', '')
+        adoption_reqeusts_collection = mongo.db.adoption_requests
+        adoption_request_data = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'message': message,
+        }
+        result = adoption_reqeusts_collection.insert_one(adoption_request_data)  # Save to DB
 
-    # Prepare the adoption request document
-    adoption_request = {
-        "user_id": data['user_id'],  # User who is making the request
-        "pet_id": data['pet_id'],    # Pet being adopted
-        "status": status,            # Status of the request
-        "message": message           # Optional message from user
-    }
+         # Return a success response
+        return jsonify({
+            "message": "Adoption request created successfully",
+            "request_id": str(result.inserted_id)  # Return the request ID in the response
+        }), 201
 
-    # Insert the adoption request into the database
-    result = mongo.db.adoption_requests.insert_one(adoption_request)
-
-    return jsonify({"message": "Adoption request created", "adoption_request_id": str(result.inserted_id)}), 201
+    except Exception as e:
+        print(e)
+        return jsonify({"error": "There was an error. Please try again later."}), 500
 
 # Define the route to get all adoption requests
-@app.route('/api/adoption_requests', methods=['GET'])
+@app.route('/api/adopt', methods=['GET'])
 def get_adoption_requests():
     adoption_requests_collection = mongo.db.adoption_requests
     requests = adoption_requests_collection.find()
