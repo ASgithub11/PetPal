@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 import re
 from bson import ObjectId
 
-app = Flask(__name__, static_folder='server/static')
+app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
 # In-memory storage for users
 users = []
 
