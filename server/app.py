@@ -5,13 +5,16 @@ import bcrypt
 from datetime import datetime, timedelta, timezone
 import re
 from bson import ObjectId
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
 # In-memory storage for users
 users = []
 
 # MongoDB URI
-app.config["MONGO_URI"] = "mongodb://localhost:27017/userDB"
+app.config["MONGO_URI"] = os.environ.get("mongodb_uri")
 
 # Initialize PyMongo
 mongo = PyMongo(app)
