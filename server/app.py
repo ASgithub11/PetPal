@@ -5,8 +5,9 @@ import bcrypt
 from datetime import datetime, timedelta, timezone
 import re
 from bson import ObjectId
+from flask_cors import CORS
 
-app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
+app = Flask(__name__, static_folder='server/static')
 # In-memory storage for users
 users = []
 
@@ -15,6 +16,8 @@ app.config["MONGO_URI"] = "mongodb://localhost:27017/userDB"
 
 # Initialize PyMongo
 mongo = PyMongo(app)
+
+CORS(app)
 
 # Secret key for JWT (store securely in production)
 SECRET_KEY = "your_secret_key"
@@ -138,14 +141,13 @@ pets_collection = mongo.db.pets
 
 # Sample pet data to insert
 sample_pets = [
-    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "http://localhost:5000/images/bella.jpg"},
-    {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True, "image_url": "http://localhost:5000/images/max.jpg"},
-    {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True, "image_url": "http://localhost:5000/images/charlie.jpg"},
-    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True, "image_url": "http://localhost:5000/images/milo.jpg"},
-    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True, "image_url": "http://localhost:5000/images/luna.jpg"},
-    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False, "image_url": "http://localhost:5000/images/oliver.jpg"}
+    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "http://127.0.0.1:5000/static/images/bella.jpg"},
+    {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True},
+    {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True},
+    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True},
+    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True},
+    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False}
 ]
-
 # Flag to check if pets have already been seeded
 pets_seeded = False
 

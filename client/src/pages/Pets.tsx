@@ -64,7 +64,7 @@ const Pets = () => {
                     // Display a grid of pet cards if pets are available
                     <div className="pets-grid">
                         {pets.map((pet) => (
-                            <div className="pet-card" key={pet.id}>
+                            <div className="pet-card" key={pet._id}>
                                 {/* Display the pet's image */}
                                 <img src={pet.imageUrl} alt={pet.name} className="pet-image" />
                                 {/* Display the pet's details */}
@@ -74,9 +74,9 @@ const Pets = () => {
                                     <p>Breed: {pet.breed}</p>
                                 </div>
                                 {/* Button to toggle the favorite status */}
-                                <button className={`favorite-btn ${favorites.includes(pet.id) ? 'favorited' : ''}`} onClick={() => handleFavorite(pet.id)}>
+                                <button className={`favorite-btn ${favorites.includes(pet._id) ? 'favorited' : ''}`} onClick={() => handleFavorite(pet._id)}>
                                     {/* Show a heart icon depending on the favorite status */}
-                                    {favorites.includes(pet.id) ? '❤️' : '🤍'}
+                                    {favorites.includes(pet._id) ? '❤️' : '🤍'}
                                 </button>
                             </div>
                         ))}
