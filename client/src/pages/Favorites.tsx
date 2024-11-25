@@ -1,93 +1,103 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
+import { fetchPets } from '../api/petAPI';
+import { addFavorite, removeFavorite } from '../api/favoritesAPI';
 import type { PetData } from '../interfaces/PetData';
 import Auth from '../utils/auth';
+import './pet.css';
 
 const Favorites = () => {
   // Initialize the state to store the user's favorite pets
-  const [favorites, setFavorites] = useState<PetData[]>([]);
-
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [pets, setPets] = useState<PetData[]>([]);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   // Fetch the user's favorite pets when the component mounts
   useEffect(() => {
-    const fetchFavorites = async () => {
+    const loadFavorites = async () => {
       try {
-        // Make a GET request to fetch the favorites
-        const response = await fetch('/api/favorites', {
-          headers: {
-            Authorization: `Bearer ${Auth.getToken}`, // Attach the user's token for authentication
-          },
-        });
+        if (isLoggedIn) {
+          // Fetch the list of all pets
+          const data = await fetchPets();
+          setPets(data);
 
-        // If the server's response is not OK, throw an error
-        if (!response.ok) {
-          throw new Error('Failed to fetch favorites');
+          // Get the stored favorite pet IDs from local storage
+          const storedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+          setFavorites(storedFavorites);
         }
-
-        // Get the data in JSON format
-        const data: PetData[] = await response.json();
-        setFavorites(data); // Update the state with the user's favorite pets
-      } catch (err) {
-        console.error('Error fetching favorites:', err);  // Log the error to the console
+      } catch (error) {
+        console.error('Failed to fetch pets:', error);
       }
     };
 
-    // Only fetch the favorites if the user is logged in
-    if (Auth.loggedIn()) {
-      fetchFavorites();
-    }
-  }, []); // Empty dependency array ensures the effect runs only once on mount
+    setIsLoggedIn(Auth.loggedIn());
+    loadFavorites();
+  }, [isLoggedIn]);
 
-  // Function to handle remving a pet from favorites
-  const unfavorite = async (petId: string) => {
+  const favoritePets = pets.filter((pet) => favorites.includes(pet._id));
+
+  // Handle adding or removing a pet from favorites (same as in Pets component)
+  const handleFavorite = async (petId: string, swipeRight: boolean) => {
     try {
-      // Make a DELETE request to remove the pet from favorites
-      const response = await fetch(`/api/favorites/${petId}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${Auth.getToken}`, // Attach the user's token for authentication
-        },
-      });
-
-      // If the server's response is not OK, throw an error
-      if (!response.ok) {
-        throw new Error('Failed to unfavorite the pet');
+      if (swipeRight) {
+        // Add to favorites
+        await addFavorite(petId);
+        setFavorites((prev) => [...prev, petId]);
+        localStorage.setItem('favorites', JSON.stringify([...favorites, petId]));
+      } else {
+        // Remove from favorites
+        await removeFavorite(petId);
+        setFavorites((prev) => prev.filter((id) => id !== petId));
+        localStorage.setItem('favorites', JSON.stringify(favorites.filter((id) => id !== petId)));
       }
-
-      // Update the favorites list by removing the unfavorited pet
-      setFavorites((prevFavorites: PetData[]) =>
-        prevFavorites.filter((pet: PetData) => pet._id !== petId.toString())
-      );
-    } catch (err) {
-      console.error('Error unfavoriting pet:', err); // Log the error to the console
+    } catch (error) {
+      console.error('Failed to update favorites:', error);
     }
   };
 
-  // Render the component
+  // Render the list of favorite pets
   return (
-    <div className="favorites-container">
+    <div className="pets-container">
       <h1>Your Favorite Pets</h1>
-      {/* Display a message if there are no favorites */}
-      {favorites.length === 0 ? (
-        <p>You have no favorite pets yet.</p>
-      ) : (
-        <div className="favorites-grid">
-          {/* Display each favortie pet */}
-          {favorites.map((pet) => (
-            <div key={pet._id} className="favorite-item">
-              <img src={pet.image_url} alt={pet.name} /> {/* Display the pet's image */}
-              <h2>{pet.name}</h2>
-              <p>{pet.age} years old</p>
-              <p>{pet.breed}</p>
-              <p>{pet.description}</p>
-              {/* Button to remove the pet from favorites */}
-              <button
-                className="btn btn-danger"
-                onClick={() => unfavorite(pet._id)}
+      {isLoggedIn ? (
+        favoritePets.length === 0 ? (
+          <p>You have no favorite pets yet. Start favoriting some!</p>
+        ) : (
+          <div className="pets-grid">
+            {favoritePets.map((pet) => (
+              <motion.div
+                key={pet._id}
+                className="pet-card"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={(_event, info) => {
+                  if (info.offset.x > 100) {
+                    // Swipe right to add to favorites
+                    handleFavorite(pet._id, true);
+                  } else if (info.offset.x < -100) {
+                    // Swipe left to remove from favorites
+                    handleFavorite(pet._id, false);
+                  }
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Remove
-              </button>
-            </div>
-          ))}
-        </div>
+                <img src={pet.image_url} alt={pet.name} className="pet-image" />
+                <div className="pet-details">
+                  <h2>{pet.name}</h2>
+                  <p>Age: {pet.age}</p>
+                  <p>Breed: {pet.breed}</p>
+                </div>
+                <div className="favorite-status">
+                  {favorites.includes(pet._id) ? '❤️' : '🤍'}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )
+      ) : (
+        <p>Please log in to see your favorite pets.</p>
       )}
     </div>
   );
