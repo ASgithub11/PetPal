@@ -138,12 +138,12 @@ pets_collection = mongo.db.pets
 
 # Sample pet data to insert
 sample_pets = [
-    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "http://127.0.0.1:5000/static/images/bella.jpg"},
-    {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True},
-    {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True},
-    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True},
-    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True},
-    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False}
+    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "https://muddling.me/wp-content/uploads/2023/12/long-life-copy.jpg"},
+    {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True, "image_url": "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2ZsMzU5MTkzNDU1MzItaW1hZ2Uta3BxazQwZmkuanBn.jpg"},
+    {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True, "image_url": "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Vwd2s2MTc3NzU2Ni13aWtpbWVkaWEtaW1hZ2Uta293Ym8zYTkuanBn.jpg"}, 
+    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fMWsZxBTzQ0l0Wme9j3X-1qSLG-hUnbqVg&s"},
+    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE4V6Z8TsgP8XyReSeCrIkYB0PWDVkH3MXHg&s"},
+    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False, "image_url" : "https://i2.pickpik.com/photos/410/926/471/maine-coon-cat-pet-relax-preview.jpg"}
 ]
 # Flag to check if pets have already been seeded
 pets_seeded = False
