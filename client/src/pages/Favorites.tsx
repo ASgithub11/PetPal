@@ -73,7 +73,7 @@ const Favorites = () => {
           {/* Display each favortie pet */}
           {favorites.map((pet) => (
             <div key={pet._id} className="favorite-item">
-              <img src={pet.imageUrl} alt={pet.name} /> {/* Display the pet's image */}
+              <img src={pet.image_url} alt={pet.name} /> {/* Display the pet's image */}
               <h2>{pet.name}</h2>
               <p>{pet.age} years old</p>
               <p>{pet.breed}</p>
