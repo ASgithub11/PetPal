@@ -215,29 +215,45 @@ def add_favorite_pet():
     return jsonify({"message": "Favorite pet added successfully!", "favorite_pet_id": str(result.inserted_id)}), 201
 
 # Define the route to get all favorite pets for a specific user
-@app.route('/api/favorite_pets/user/<int:user_id>', methods=['GET'])
-def get_user_favorite_pets(user_id):
-    # Query the database for all favorite pets of the user
-    favorite_pets = mongo.db.favorite_pets.find({"user_id": user_id})
+@app.route('/api/favorites', methods=['GET'])
+def get_favorites():
+    try:
+        favorite_pets_collection = mongo.db.favorite_pets
+        favorite_pets_collection = favorite_pets_collection.find()
 
-    # Convert the result to a list and prepare it for JSON response
-    favorite_pet_list = []
-    for pet in favorite_pets:
-        pet['_id'] = str(pet['_id'])  # Convert ObjectId to string for JSON serialization
-        favorite_pet_list.append(pet)
+        favorite_pets_list = []
+        for pet in favorite_pets_collection:
+            pet['_id'] = str(pet['_id'])
 
-    return jsonify(favorite_pet_list)
+        return jsonify(favorite_pets_list), 200
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "An error occurred while retrieving favorite pets"}), 500
+
 
 # Define the route to remove a favorite pet
-@app.route('/api/favorite_pets/<favorite_pet_id>', methods=['DELETE'])
-def remove_favorite_pet(favorite_pet_id):
-    # Delete the favorite pet by its ID
-    result = mongo.db.favorite_pets.delete_one({"_id": ObjectId(favorite_pet_id)})
+from flask import request, jsonify
+from bson import ObjectId
 
-    if result.deleted_count > 0:
-        return jsonify({"message": "Favorite pet removed successfully"}), 200
-    else:
-        return jsonify({"error": "Favorite pet not found"}), 404
+@app.route('/api/favorites/<favorite_pet_id>', methods=['DELETE'])
+def remove_favorite_pet(favorite_pet_id):
+    try:
+        # Ensure the petId is valid ObjectId
+        if not ObjectId.is_valid(favorite_pet_id):
+            return jsonify({"error": "Invalid pet ID"}), 400
+        
+        # Delete the favorite pet by its ObjectId
+        result = mongo.db.favorite_pets.delete_one({"_id": ObjectId(favorite_pet_id)})
+
+        if result.deleted_count > 0:
+            return jsonify({"message": "Favorite pet removed successfully"}), 200
+        else:
+            return jsonify({"error": "Favorite pet not found"}), 404
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "An error occurred while removing the pet"}), 500
+
+
     
 # this section is for the adoption requests
 
