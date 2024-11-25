@@ -3,4 +3,4 @@ flask-sqlalchemy
 flask-pymongo
 pyjwt
 bcrypt
-dotenv
+python-dotenv
