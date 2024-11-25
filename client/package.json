@@ -12,7 +12,9 @@
     "start": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
+    "framer-motion": "^5.5.0",
     "jwt-decode": "^4.0.0",
+    "motion": "^11.11.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1"

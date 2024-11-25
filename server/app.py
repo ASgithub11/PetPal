@@ -138,7 +138,7 @@ pets_collection = mongo.db.pets
 
 # Sample pet data to insert
 sample_pets = [
-    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "http://127.0.0.1:5000/static/images/bella.jpg"},
+    {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "https://muddling.me/wp-content/uploads/2023/12/long-life-copy.jpg"},
     {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True},
     {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True},
     {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True},
