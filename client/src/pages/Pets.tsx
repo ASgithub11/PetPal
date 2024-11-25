@@ -66,7 +66,7 @@ const Pets = () => {
                                 className="pet-card"
                                 drag="x"
                                 dragConstraints={{ left: 0, right: 0 }}
-                                onDragEnd={(event, info) => {
+                                onDragEnd={(_event, info) => {
                                     if (info.offset.x > 100) {
                                         // Swipe right to add to favorites
                                         handleFavorite(pet._id, true);
