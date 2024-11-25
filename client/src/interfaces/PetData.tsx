@@ -1,5 +1,5 @@
 export interface PetData {
-    id: string;
+    _id: string;
     name: string;
     age: number;
     breed: string;
