@@ -9,7 +9,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
+app = Flask(__name__, static_folder='../client/dist', static_url_path='/', template_folder='../client/dist')
 # In-memory storage for users
 users = []
 
@@ -24,6 +24,10 @@ SECRET_KEY = "your_secret_key"
 
 # Define the 'users' collection
 users_collection = mongo.db.users
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
 
 # create new user
 @app.route('/api/users', methods=['POST'])
