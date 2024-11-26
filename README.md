@@ -9,6 +9,7 @@
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Screenshots](#screenshots)
 - [License](#license)
 - [Contribution](#contributors)
 - [Questions](#questions)
@@ -61,15 +62,11 @@ PetPal is a web-based pet adoption platform designed to connect pet seekers with
     npm install
     ```
 
-4. Set up the environmental variables in the root directory:
+4. Set up the environmental variables in the server directory:
 
     ```
-    ```
-
-5. Set up the database: Run the following commands at root of the project to seed the database:
-
-    ```
-    npm run seed
+    MONNGODB_URI='your_mongodb_connection_string'
+    JWT_SECRET='your_jwt_secret_key'
     ```
 
 6. Build the dist folder:
@@ -85,7 +82,6 @@ PetPal is a web-based pet adoption platform designed to connect pet seekers with
     ```
 
 PetPal should now be running locally at http://localhost:3000.
-
 
 ## Usage
 
@@ -105,6 +101,32 @@ Follow these steps to use the PetPal application:
 
 5. ### User Dashboard
     Once logged in, manage your account and view the pets you've interacted with.
+
+## Screenshots
+
+The following animation shows how the Homepage and About page appears:
+
+![Alt text](client/src/assets/images/gif01.gif)
+
+The following animation show the Adoption, Login, and Signup pages:
+
+![Alt text](client/src/assets/images/gif02.gif)
+
+The following animation shows how the Pets page appears once the user is logged in:
+
+![Alt text](client/src/assets/images/gif03.gif)
+
+The following animation shows how the user can save pets, view in Favorites, and remove from Favorites:
+
+![Alt text](client/src/assets/images/gif05.gif)
+
+The following animation shows the Logout functionality and return the user back to Homepage:
+
+![Alt text](client/src/assets/images/gif04.gif)
+
+Link to the deployed site:
+
+https://petpal-wtuj.onrender.com/
 
 ## License
 
