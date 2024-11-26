@@ -3,12 +3,13 @@
   }
   .pets-grid {
     display: flex;
-    overflow: hidden;
+    flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
   }
   .pet-card {
       position: relative;
-      width: 300px;
+      width: calc(20% - 1rem);
       height: 400px;
       border: 1px solid #ddd;
       border-radius: 10px;
