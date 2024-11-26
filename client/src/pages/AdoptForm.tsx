@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './AdoptForm.css';
+import auth from '../utils/auth';
 
 const AdoptForm = () => {
   // Get the pet ID from the URL 
   const { petId } = useParams<{ petId: string }>(); 
   const navigate = useNavigate(); // Use navigate to redirect the user after form submission
+  const isLoggedIn = auth.loggedIn();
 
   // State to manage form inputs
   const [formData, setFormData] = useState({
@@ -69,6 +71,7 @@ const AdoptForm = () => {
   // Render the adoption form
   return (
     <div className="form-container">
+      {isLoggedIn ? (
       <form className="form adopt-form" onSubmit={handleSubmit}>
         <h1>Adopt a Pet</h1>
         {/* Display error message */}
@@ -121,6 +124,11 @@ const AdoptForm = () => {
           Submit Application
         </button>
       </form>
+      ) : (
+        <div className="login-prompt">
+          <p>Please log in to submit an application.</p>
+        </div>
+      )}
     </div>
   );
 };
