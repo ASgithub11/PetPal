@@ -148,9 +148,126 @@ sample_pets = [
     {"name": "Bella", "species": "Dog", "breed": "Labrador", "age": 4, "description": "Friendly and energetic.", "is_available": True, "image_url": "https://muddling.me/wp-content/uploads/2023/12/long-life-copy.jpg"},
     {"name": "Max", "species": "Cat", "breed": "Siamese", "age": 2, "description": "Calm and affectionate.", "is_available": True, "image_url": "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2ZsMzU5MTkzNDU1MzItaW1hZ2Uta3BxazQwZmkuanBn.jpg"},
     {"name": "Charlie", "species": "Dog", "breed": "Golden Retriever", "age": 3, "description": "Loyal and friendly.", "is_available": True, "image_url": "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3Vwd2s2MTc3NzU2Ni13aWtpbWVkaWEtaW1hZ2Uta293Ym8zYTkuanBn.jpg"}, 
-    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "Shy, but loves attention.", "is_available": True, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fMWsZxBTzQ0l0Wme9j3X-1qSLG-hUnbqVg&s"},
-    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE4V6Z8TsgP8XyReSeCrIkYB0PWDVkH3MXHg&s"},
-    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False, "image_url" : "https://i2.pickpik.com/photos/410/926/471/maine-coon-cat-pet-relax-preview.jpg"}
+    {"name": "Milo", "species": "Cat", "breed": "Persian", "age": 5, "description": "A bit shy but loves attention once comfortable.", "is_available": True, "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0fMWsZxBTzQ0l0Wme9j3X-1qSLG-hUnbqVg&s"},
+    {"name": "Luna", "species": "Dog", "breed": "German Shepherd", "age": 6, "description": "Smart and alert.", "is_available": True, "image_url": "https://images.pexels.com/photos/342214/pexels-photo-342214.jpeg"},
+    {"name": "Oliver", "species": "Cat", "breed": "Maine Coon", "age": 3, "description": "Affectionate and playful.", "is_available": False, "image_url" : "https://i2.pickpik.com/photos/410/926/471/maine-coon-cat-pet-relax-preview.jpg"},
+    {
+        "name": "Rocky",
+        "species": "Dog",
+        "breed": "Bulldog",
+        "age": 4,
+        "description": "A tough exterior but a sweetheart at heart, loves belly rubs.",
+        "is_available": True,
+        "image_url": "https://cdn12.picryl.com/photo/2016/12/31/dog-summer-bulldog-animals-7bd543-1024.jpg"
+    },
+    {
+        "name": "Salem",
+        "species": "Cat",
+        "breed": "Black Cat",
+        "age": 3,
+        "description": "Mysterious and independent, but enjoys quiet time with humans.",
+        "is_available": True,
+        "image_url": "https://www.publicdomainpictures.net/pictures/240000/nahled/black-cat-1508769961FHr.jpg"
+    },
+    {
+        "name": "Ruby",
+        "species": "Dog",
+        "breed": "Dachshund",
+        "age": 2,
+        "description": "Tiny but mighty, loves to burrow into blankets.",
+        "is_available": True,
+        "image_url": "https://media.istockphoto.com/id/839279536/photo/a-miniature-dachshund-standing-in-long-grass.jpg?s=612x612&w=0&k=20&c=1ChA2Nk4M9TYjxmyefmEeMXwzzdBkMUD2PL5Rez9Vjk="
+    },
+    {
+        "name": "Chester",
+        "species": "Cat",
+        "breed": "British Shorthair",
+        "age": 4,
+        "description": "Chubby and playful, loves to chase laser pointers.",
+        "is_available": True,
+        "image_url": "https://media.istockphoto.com/id/1319774380/photo/british-cat-lying-cat-tree-scratching-post.jpg?s=612x612&w=0&k=20&c=xHChZkY0pRw5-ZMdT_qulNxWS1sWP_OUXUihYg3cZjo="
+    },
+    {
+        "name": "Zara",
+        "species": "Dog",
+        "breed": "Poodle",
+        "age": 5,
+        "description": "Elegant and friendly, loves to be pampered and brushed.",
+        "is_available": True,
+        "image_url": "https://images.stockcake.com/public/4/9/4/494b8641-1ec7-464f-880e-12440232abb7_large/elegant-poodle-posing-stockcake.jpg"
+    },
+    {
+        "name": "Cleo",
+        "species": "Cat",
+        "breed": "Egyptian Mau",
+        "age": 2,
+        "description": "Active and curious, loves to explore and climb high places.",
+        "is_available": True,
+        "image_url": "https://images.rawpixel.com/image_social_landscape/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHg5MzIxNTgtaW1hZ2Uta3d5bzF2YXQuanBn.jpg"
+    },
+    {
+        "name": "Bailey",
+        "species": "Dog",
+        "breed": "Beagle",
+        "age": 3,
+        "description": "Friendly, curious, and loves to go on long walks.",
+        "is_available": True,
+        "image_url": "https://cdn2.picryl.com/photo/2008/05/18/beaglehappy2-1fe81c-1024.jpg"
+    },
+    {
+        "name": "Simba",
+        "species": "Cat",
+        "breed": "Ragdoll",
+        "age": 1,
+        "description": "Gentle, affectionate, and loves to follow you around the house.",
+        "is_available": True,
+        "image_url": "https://www.publicdomainpictures.net/pictures/90000/nahled/gorgeous-ragdoll-cat.jpg"
+    },
+    {
+        "name": "Toby",
+        "species": "Dog",
+        "breed": "Cocker Spaniel",
+        "age": 2,
+        "description": "Playful, loving, and enjoys cuddles after a long walk.",
+        "is_available": True,
+        "image_url": "https://cdn12.picryl.com/photo/2016/12/31/dog-cocker-pet-animals-a5611b-1024.jpg"
+    },
+    {
+        "name": "Jasper",
+        "species": "Cat",
+        "breed": "Abyssinian",
+        "age": 4,
+        "description": "Energetic, agile, and loves interactive play sessions.",
+        "is_available": True,
+        "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwPHFshmH3o_-U3Os6Ozyy0wKRuC-EnL5PEw&s"
+    },
+    {
+        "name": "Maggie",
+        "species": "Dog",
+        "breed": "Boxer",
+        "age": 6,
+        "description": "Energetic and playful, loves to play fetch and run in the yard.",
+        "is_available": True,
+        "image_url": "https://lh5.googleusercontent.com/proxy/iQTnsXZ0Hm9uie2jI_t79S6gNXUVmWFfzP2ZcIu9gnQhsNjZIDgbS_r9zHAzWr07fA_DPh8yaqHf6ab-DDv03tfO1SZFC2aQBtf7bYAvuuMl8XQ"
+    },
+    {
+        "name": "Nala",
+        "species": "Cat",
+        "breed": "Bengal",
+        "age": 3,
+        "description": "Active and playful, loves climbing and being the center of attention.",
+        "is_available": True,
+        "image_url": "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcHgxNDA3MTE2LWltYWdlLWt3dnh6NXNzLWt6aHZ1ZnhoLmpwZw.jpg"
+    },
+    {
+        "name": "Daisy",
+        "species": "Dog",
+        "breed": "Shih Tzu",
+        "age": 4,
+        "description": "Sweet, loyal, and loves snuggling on the couch.",
+        "is_available": True,
+        "image_url": "https://cdn12.picryl.com/photo/2016/12/31/dog-shih-tzu-puppy-animals-23c668-640.jpg"
+    }
 ]
 # Flag to check if pets have already been seeded
 pets_seeded = False
