@@ -60,6 +60,9 @@
   
   .navbar .menu-icon {
     display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
   }
   
   @media (max-width: 768px) {
@@ -82,9 +85,6 @@
   
     .navbar .menu-icon {
       display: block;
-      font-size: 30px;
-      cursor: pointer;
-      color: white;
     }
   
     .navbar .nav-links a,
@@ -92,6 +92,11 @@
       font-size: 22px;
       text-align: center;
     }
+
+    .navbar .nav-links a:hover,
+  .navbar .nav-links button:hover {
+    background-color: #ff7c6d;
+  }
   }
   
   

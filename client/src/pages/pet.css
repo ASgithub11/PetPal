@@ -29,3 +29,21 @@
       height: 200px;
       object-fit: contain;
   }
+
+/* Mobile view - Stacked layout */
+@media (max-width: 768px) {
+    .pets-grid {
+        flex-direction: column;  /* Stack the pet cards vertically */
+        gap: 20px;  /* Space between the pet cards */
+        justify-content: flex-start;  /* Align to the top of the screen */
+    }
+
+    .pet-card {
+        width: 100%;  /* Make the pet cards take the full width */
+        height: auto;  /* Let the height adjust dynamically based on content */
+    }
+
+    .pet-image {
+        height: 250px;  /* Adjust the pet image height for mobile */
+    }
+}
