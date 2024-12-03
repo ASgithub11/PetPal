@@ -154,11 +154,13 @@ SOFTWARE.
 
 ## Contributors
 
-- Kaleb Boothe
+- [Aisha Siddiqa](https://github.com/ASgithub11)
 
-- Kayla Hebertson
+- [Kaleb Boothe](https://github.com/KBoothe617)
 
-- Lindsay
+- [Kayla Hebertson](https://github.com/kaylahebertson)
+
+- [Lindsay Houtz](https://github.com/lindsayhoutz)
 
 ## Questions
 
